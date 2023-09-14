@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeContact } from 'redux/contactsSlice';
+import { delContactsThunk, getContactsThunk } from 'redux/contactsThunk';
 
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const filtered = useSelector((state) => state.filter.filtered);
 
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
+
   const handleRemoveContact = (id) => {
     dispatch(removeContact(id));
+    dispatch(delContactsThunk(id));
   };
 
   return (
