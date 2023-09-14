@@ -21,23 +21,22 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
   reducers: {},
-  extraReducers: builder => {
-    builder
-      .addCase(getContactsThunk.pending, handlePending)
-      .addCase(getContactsThunk.rejected, handleReject)
-      .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts = payload;
-      })
-      .addCase(addContactsThunk.pending, handlePending)
-      .addCase(addContactsThunk.rejected, handleReject)
-      .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts = [payload, ...state.contacts];
-      })
-      .addCase(delContactsThunk.pending, handlePending)
-      .addCase(delContactsThunk.rejected, handleReject)
-      .addCase(delContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts = state.contacts.filter(item => item.id !== payload.id);
-      });
+  extraReducers: {
+    [getContactsThunk.pending]: handlePending,
+    [getContactsThunk.rejected]: handleReject,
+    [getContactsThunk.fulfilled]: (state, { payload }) => {
+      state.contacts = payload;
+    },
+    [addContactsThunk.pending]: handlePending,
+    [addContactsThunk.rejected]: handleReject,
+    [addContactsThunk.fulfilled]: (state, { payload }) => {
+      state.contacts = [payload, ...state.contacts];
+    },
+    [delContactsThunk.pending]: handlePending,
+    [delContactsThunk.rejected]: handleReject,
+    [delContactsThunk.fulfilled]: (state, { payload }) => {
+      state.contacts = state.contacts.filter(item => item.id !== payload.id);
+    },
   },
 });
 
