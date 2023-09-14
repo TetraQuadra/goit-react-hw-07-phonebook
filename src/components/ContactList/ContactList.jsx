@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from 'redux/contactsSlice';
 import { delContactsThunk, getContactsThunk } from 'redux/contactsThunk';
 
 
@@ -13,7 +12,6 @@ const ContactList = () => {
   }, [dispatch]);
 
   const handleRemoveContact = (id) => {
-    dispatch(removeContact(id));
     dispatch(delContactsThunk(id));
   };
 

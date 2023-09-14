@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
 import { addContactsThunk } from 'redux/contactsThunk';
 
 const ContactForm = () => {
@@ -20,7 +19,6 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(addContact(contact))
     dispatch(addContactsThunk(contact))
   };
 
