@@ -30,7 +30,15 @@ const contactsSlice = createSlice({
     [addContactsThunk.pending]: handlePending,
     [addContactsThunk.rejected]: handleReject,
     [addContactsThunk.fulfilled]: (state, { payload }) => {
-      state.contacts = [payload, ...state.contacts];
+      if (
+        state.contacts.find(
+          contact => contact.name.toLowerCase() === payload.name.toLowerCase()
+        )
+      ) {
+        alert('Contact already exists!');
+      } else {
+        state.contacts = [payload, ...state.contacts];
+      }
     },
     [delContactsThunk.pending]: handlePending,
     [delContactsThunk.rejected]: handleReject,
